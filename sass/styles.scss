@@ -1,0 +1,192 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: #333;
+	color: whitesmoke;
+	font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.video {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: -10;
+		filter: blur(5px);
+	}
+}
+
+.rules {
+	display: none;
+
+	p {
+		width: 100%;
+		padding: 5px;
+		margin: 0 5px;
+		text-align: left;
+	}
+}
+.difficulty {
+	display: none;
+}
+.gameboard {
+	display: none;
+
+	.gameinfo {
+		width: 100%;
+		height: 10%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 5px;
+		.timer, .mines {
+            text-align: center;
+			width: 20%;
+			line-height: 10%;
+			color: tomato;
+		}
+		
+	}
+	.minefield {
+		width: 100%;
+		height: 90%;
+		display: grid;
+	}
+}
+
+// Common classes
+.title {
+	text-transform: uppercase;
+	text-align: center;
+	padding: 5px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	font-size: 22px;
+}
+.btn {
+	width: 50%;
+	height: 10%;
+	font-weight: bold;
+	font-size: 18px;
+	letter-spacing: 1px;
+	border-radius: 10px;
+	background: none;
+	color: whitesmoke;
+	border: none;
+	border: 2px solid whitesmoke;
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn:hover {
+	background-color: #bbb;
+	color: #555;
+}
+.btn:focus {
+	outline: none;
+	background-color: #fff;
+	color: #000;
+}
+.active {
+	display: flex;
+	z-index: 10;
+	width: 95vw;
+	height: 95vh;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.easy {
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(8, 1fr);
+	grid-gap: 5px;
+}
+.medium {
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+	grid-gap: 2px;
+}
+.hard {
+	grid-template-columns: repeat(20, 1fr);
+	grid-template-rows: repeat(16, 1fr);
+	grid-gap: 1px;
+}
+.cell {
+	margin: 2px;
+	background: rgba(255, 255, 255, 0.45);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border-radius: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	cursor: pointer;
+}
+.cell:active {
+	background: rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
+
+@media (min-width: 768px) {
+	.rules {
+		p {
+			margin-left: 25px;
+			font-size: 25px;
+		}
+	}
+	.gameboard {
+		.gameinfo {
+			.timer {
+				font-size: 35px;
+			}
+			.mines {
+				font-size: 35px;
+			}
+		}
+	}
+
+	.title {
+		font-size: 40px;
+	}
+	.btn {
+		font-size: 25px;
+	}
+}
+@media (min-width: 1200px) {
+	.rules {
+		p {
+			text-align: center;
+			font-size: 30px;
+		}
+	}
+	.title {
+		font-size: 50px;
+	}
+	.btn {
+		font-size: 35px;
+	}
+	.active {
+		width: 70vw;
+		height: 70vh;
+	}
+}
