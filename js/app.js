@@ -7,27 +7,31 @@ const difficulty = document.querySelector('.difficulty')
 const gameBoard = document.querySelector('.gameboard')
 const minefield = document.querySelector('.minefield')
 const timer = document.querySelector('.timer')
-
+let cells
 let time
 let mines
 const createMinefield = (cells, b) => {
+	const index = []
 	for (let i = 0; i < cells; i++) {
 		const newCell = document.createElement('button')
 		minefield.appendChild(newCell)
 		newCell.classList.add('cell')
-		newCell.setAttribute('data-id', i);
-
-		//Tutaj zacznij
-		let mines =Math.floor(Math.random(b) * cells)
-		for(let j = 0; j < b; j++){
-			
-			if(mines == j){
-				newCell.textContent = '💣'
+		newCell.setAttribute('id', i)
+	}
+	for (let j = 0; j < b; j++) {
+		const randomMines = Math.floor(Math.random() * cells)
+		index.forEach(el => {
+			if (el === randomMines) {
+				index.push(randomMines)
+				let mine = document.querySelector(`[id="${randomMines}"]`)
+				console.log(mine)
+				mine.textContent = '💣'
 			}
-		}}
+		})
 
-	difficulty.classList.remove('active')
-	gameBoard.classList.add('active')
+		difficulty.classList.remove('active')
+		gameBoard.classList.add('active')
+	}
 }
 
 const timeCount = time => {
@@ -45,9 +49,6 @@ const timeCount = time => {
 		time--
 	}, 1000)
 }
-function gameStart() {
-	get
-}
 
 const activeSwitch = () => {
 	rules.classList.remove('active')
@@ -55,23 +56,23 @@ const activeSwitch = () => {
 }
 
 btnRules.addEventListener('click', activeSwitch)
-btnEasy.addEventListener('click', (e) => {
+btnEasy.addEventListener('click', e => {
 	e.preventDefault()
 	createMinefield(64, 10)
 	timeCount(600)
 	minefield.classList.add('easy')
 })
-btnMedium.addEventListener('click', (e) => {
+btnMedium.addEventListener('click', e => {
 	e.preventDefault()
 	createMinefield(144, 40)
 	timeCount(1200)
 	minefield.classList.add('medium')
 })
-btnHard.addEventListener('click', (e) => {
+btnHard.addEventListener('click', e => {
 	e.preventDefault()
 	createMinefield(320, 99)
 	timeCount(1800)
 	minefield.classList.add('hard')
 })
 
-//@TODO: ok, fajne miny sie wyswietlaja ale musi sie ich wyswietlac ilosc podana w w argumencie funckji a na razie wyswietla sie ich losowa liczba do 11 sztuk
+//@TODO: ok, fajne miny sie wyswietlaja ale musi sie ich wyswietlac ilosc podana w w argumencie funckji a na razie wyswietla sie ich losowa liczba bo jesli id miny sie powtarza to wyglada to jakby byla jednej miny brakowalo.
